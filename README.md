@@ -3,7 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/JJ0o0/OpenGL-Code)
 ![GitHub last commit](https://img.shields.io/github/last-commit/JJ0o0/OpenGL-Code)
 ![GitHub issues](https://img.shields.io/github/issues/JJ0o0/OpenGL-Code)
-![License](https://img.shields.io/github/license/JJ0o0/OpenGL-Code)
+[![License](https://img.shields.io/github/license/JJ0o0/OpenGL-Code)](https://github.com/JJ0o0/OpenGL-Code/blob/main/LICENSE)
 
 Repositório para estudo e organização do material do LearnOpenGL, o melhor guia moderno e gratuito para aprender OpenGL em Markdown.
 
