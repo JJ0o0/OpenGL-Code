@@ -1,4 +1,4 @@
-#include "window/window.h"
+#include "window.h"
 
 int main() {
     Window wnd(800, 600, "J0o0ll Janela"); // Criando a janela.

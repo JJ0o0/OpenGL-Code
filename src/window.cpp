@@ -1,7 +1,21 @@
 #include "window.h"
+#include "mesh.h"
 
-#include <GLFW/glfw3.h>
 #include <iostream>
+
+// Array para armazenar os vértices.
+float vertices[] = {
+    0.5f, 0.5f, 0.0f,
+    0.5f, -0.5f, 0.0f,
+    -0.5f, -0.5f, 0.0f,
+    -0.5f, 0.5f, 0.0f
+};
+
+// Array para armazenar os indices.
+unsigned int indices[] = {
+    0, 1, 3,
+    1, 2, 3
+};
 
 // Define variáveis necessárias para a janela.
 Window::Window(int width, int height, const char* title) 
@@ -9,6 +23,11 @@ Window::Window(int width, int height, const char* title)
 
 // Destroi, se houver, o objeto da janela e desliga o GLFW.
 Window::~Window() {
+    // Como esses dois são ponteiros, temos que remover manualmente.
+    // O Deconstrutor dos dois age sozinho.
+    delete shader;  // Destroi o shader.
+    delete mesh;    // E também a mesh.
+
     if (window) glfwDestroyWindow(window);
     
     glfwTerminate();
@@ -52,6 +71,10 @@ void Window::Init() {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "Não foi possível inicializar o GLAD!\n";
     }
+
+    // Aqui, criamos as classes.
+    mesh = new Mesh(vertices, sizeof(vertices), indices, sizeof(indices));
+    shader = new Shader("../assets/shaders/default.vert", "../assets/shaders/default.frag");
 }
 
 // Método que roda a cada frame no Game Loop.
@@ -62,6 +85,9 @@ void Window::Update() {
     // Renderização
     glClearColor(.2f, .3f, .3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    shader->UseProgram();   // Aqui, pedimos para o shader usar o programa gerado para renderizar.
+    mesh->Draw();           // E depois, desenhamos o mesh que nós queremos.
 
     // Eventos e Buffers
     glfwSwapBuffers(window);

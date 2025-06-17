@@ -4,4 +4,3 @@ cd build
 cmake ..
 make
 ./opengl_code
-clear
