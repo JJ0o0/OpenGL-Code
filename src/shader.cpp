@@ -1,4 +1,5 @@
 #include "shader.h"
+#include "glm/gtc/type_ptr.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -47,6 +48,11 @@ Shader::~Shader() {
 // Método para usar o programa do Shader.
 void Shader::UseProgram() {
     glUseProgram(shaderProgram);
+}
+
+void Shader::SetVec4Uniform(const char* name, const glm::vec4& value) {
+    GLint location = glGetUniformLocation(shaderProgram, name);
+    glUniform4fv(location, 1, glm::value_ptr(value));
 }
 
 // Método para pegar o programa do Shader.

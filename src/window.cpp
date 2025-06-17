@@ -1,20 +1,20 @@
 #include "window.h"
 #include "mesh.h"
 
+#include <GLFW/glfw3.h>
+#include <cmath>
 #include <iostream>
 
 // Array para armazenar os vértices.
 float vertices[] = {
-    0.4f, 0.5f, 0.0f,
-    0.4f, -0.5f, 0.0f,
-    -0.4f, -0.5f, 0.0f,
-    -0.4f, 0.5f, 0.0f
+    0.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, 0.0f,      0.0f, 1.0f, 0.0f,
+    0.0f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f
 };
 
 // Array para armazenar os indices.
 unsigned int indices[] = {
-    0, 1, 3,
-    1, 2, 3
+    0, 1, 2
 };
 
 // Define variáveis necessárias para a janela.

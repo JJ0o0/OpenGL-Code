@@ -34,11 +34,21 @@ Mesh::Mesh(const float* vertices, size_t verticeSize, const unsigned int* indice
         0, 3, 
         GL_FLOAT, 
         GL_FALSE, 
-        3 * sizeof(float), 
+        6 * sizeof(float), 
         (void*)0
     );
 
-    glEnableVertexAttribArray(0); // Limpamos a Array de Atributos dos Vertices  atual.
+    glEnableVertexAttribArray(0); // Habilitamos o vertex array para índice 0.
+
+    glVertexAttribPointer(                            // Passamos a configurações dos vértices.
+        1, 3, 
+        GL_FLOAT, 
+        GL_FALSE, 
+        6 * sizeof(float), 
+        (void*)(3 * sizeof(float))
+    );
+
+    glEnableVertexAttribArray(1); // Habilitamos o vertex array para índice 1.
     glBindVertexArray(0);         // Limpamos a Array de Vertices atual.
 }
 

@@ -2,6 +2,8 @@
 
 #include <glad/glad.h>
 
+#include "glm/ext/vector_float4.hpp"
+
 #include <string>
 
 class Shader {
@@ -17,6 +19,7 @@ public:
     ~Shader();
 
     void UseProgram();
+    void SetVec4Uniform(const char* name, const glm::vec4& value);
 
     GLuint GetProgram();
 };
