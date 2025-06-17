@@ -21,14 +21,16 @@ Este projeto reúne os arquivos do LearnOpenGL baixados do repositório oficial,
 
 ## Como Usar
 
+OBS: É preciso ter o GLFW e o OpenGL instalados e configurados na sua máquina!
+
 1. Clone este repositório para seu computador:  
    ```bash
    git clone https://github.com/JJ0o0/OpenGL-Code.git
    ```  
 
 2. Abra a pasta no seu editor favorito (VSCode/Neovim recomendado)  
-3. Explore os arquivos Markdown para estudar os conceitos e exemplos  
-4. Faça modificações, traduções ou anotações para ajudar no seu aprendizado
+3. Explore os arquivos.
+4. Para rodar use o run.sh ou compile você mesmo!
 
 ---
 

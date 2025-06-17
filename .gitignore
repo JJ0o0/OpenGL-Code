@@ -1,0 +1,31 @@
+# Arquivos de build!
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Binários
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.lib
+*.so
+*.dll
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# VSCode/VSCodium configs locais
+.vscode/
+*.code-workspace
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# compile_commands se quiser ignorar
+# compile_commands.json
