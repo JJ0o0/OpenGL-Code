@@ -1,0 +1,22 @@
+#pragma once
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+class Window {
+private:
+    GLFWwindow* window = nullptr;
+    int window_width, window_height;
+    const char* window_title;
+
+    static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+public:
+    Window(int width, int height, const char* title);
+    ~Window();
+
+    void Init();
+    void Update();
+    void InputHandling();
+
+    bool ShouldClose();
+};
