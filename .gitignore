@@ -1,4 +1,5 @@
 # Arquivos de build!
+.cache/
 build/
 CMakeFiles/
 CMakeCache.txt
