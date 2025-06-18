@@ -19,6 +19,7 @@ public:
     ~Shader();
 
     void UseProgram();
+    void SetIntUniform(const char* name, const int& value);
     void SetVec4Uniform(const char* name, const glm::vec4& value);
 
     GLuint GetProgram();

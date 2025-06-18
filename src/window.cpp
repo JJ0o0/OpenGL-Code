@@ -1,20 +1,20 @@
 #include "window.h"
-#include "mesh.h"
 
-#include <GLFW/glfw3.h>
 #include <cmath>
 #include <iostream>
 
 // Array para armazenar os vértices.
 float vertices[] = {
-    0.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.0f,      0.0f, 1.0f, 0.0f,
-    0.0f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f
+    0.5f,  0.5f, 0.0f,      1.0f,  1.0f,
+    0.5f, -0.5f, 0.0f,      1.0f,  0.0f,
+  -0.5f,-0.5f,0.0f,     0.0f, 0.0f,
+  -0.5f, 0.5f,0.0f,     0.0f, 1.0f   
 };
 
 // Array para armazenar os indices.
 unsigned int indices[] = {
-    0, 1, 2
+    0, 1, 2,
+    0, 2, 3
 };
 
 // Define variáveis necessárias para a janela.
@@ -23,10 +23,12 @@ Window::Window(int width, int height, const char* title)
 
 // Destroi, se houver, o objeto da janela e desliga o GLFW.
 Window::~Window() {
-    // Como esses dois são ponteiros, temos que remover manualmente.
-    // O Deconstrutor dos dois age sozinho.
-    delete shader;  // Destroi o shader.
-    delete mesh;    // E também a mesh.
+    // Como esses objetos são ponteiros, temos que remover manualmente.
+    // O Deconstrutor dos objetos age sozinho.
+    delete shader;
+    delete texture;
+    delete texture2;
+    delete mesh;
 
     if (window) glfwDestroyWindow(window);
     
@@ -74,7 +76,13 @@ void Window::Init() {
 
     // Aqui, criamos as classes.
     mesh = new Mesh(vertices, sizeof(vertices), indices, sizeof(indices));
+    texture = new Texture("../assets/images/brick.jpg");
+    texture2 = new Texture("../assets/images/wood.jpg");
     shader = new Shader("../assets/shaders/default.vert", "../assets/shaders/default.frag");
+
+    shader->UseProgram();   // Usando o programa do Shader só para setar as texturas no fragment.
+    shader->SetIntUniform("texture1", 0); // Falando para o shader usar a textura do slot 0.
+    shader->SetIntUniform("texture2", 1); // Mesma coisa do outro, só que usando o slot 1.
 }
 
 // Método que roda a cada frame no Game Loop.
@@ -86,6 +94,8 @@ void Window::Update() {
     glClearColor(.2f, .3f, .3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    texture->Bind(0); // Dando Bind na textura com o index 0.
+    texture2->Bind(1); // Dando Bind na segunda textura com o index 1.
     shader->UseProgram();   // Aqui, pedimos para o shader usar o programa gerado para renderizar.
     mesh->Draw();           // E depois, desenhamos o mesh que nós queremos.
 

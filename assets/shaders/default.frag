@@ -1,7 +1,15 @@
-#version 330 core
-out vec4 FragColor;
-in vec3 ourColor;
+#version 330 core // Versão do GLSL
+out vec4 FragColor; // Cor final.
+in vec2 TexCoord; // Importando as coordenadas da textura do vertex.
+
+// Setando as variáveis das texturas.
+uniform sampler2D texture1;
+uniform sampler2D texture2;
 
 void main() {
-    FragColor = vec4(ourColor, 1.0);
+    // Misturando as duas texturas em 50%
+    FragColor = mix(texture(texture1, TexCoord), 
+                    texture(texture2, TexCoord),
+                    0.5    
+                );
 }

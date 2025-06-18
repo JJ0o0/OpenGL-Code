@@ -2,6 +2,13 @@
 
 // Aqui, criamos as nossas Arrays: VBO, EBO e VAO.
 Mesh::Mesh(const float* vertices, size_t verticeSize, const unsigned int* indices, size_t indiceSize) {
+    // Essa bruxaria aqui calcula o tamanho dos indices.
+    // Nossa variável indiceSize retorna em bytes (se for 6 valores, retorna 24 bytes).
+    // Já que: 6 * 4 = 24 (Sendo 4, o tamanho de um unsigned int).
+    // Assim, a gente converte bytes para integer fazendo uma equação simples:
+    // x = 24/4 ou x = indiceSize / tamanho de um unsigned int.
+    indexCount = static_cast<GLsizei>(indiceSize / sizeof(unsigned int));
+    
     glGenVertexArrays(1, &VAO);     // Geramos a VAO (vazia)
     glGenBuffers(1, &VBO);         // Geramos o VBO (vazio)
     glGenBuffers(1, &EBO);         // Geramos o EBO (vazio)
@@ -34,21 +41,21 @@ Mesh::Mesh(const float* vertices, size_t verticeSize, const unsigned int* indice
         0, 3, 
         GL_FLOAT, 
         GL_FALSE, 
-        6 * sizeof(float), 
+        5 * sizeof(float), 
         (void*)0
     );
 
     glEnableVertexAttribArray(0); // Habilitamos o vertex array para índice 0.
 
     glVertexAttribPointer(                            // Passamos a configurações dos vértices.
-        1, 3, 
+        1, 2, 
         GL_FLOAT, 
         GL_FALSE, 
-        6 * sizeof(float), 
+        5 * sizeof(float), 
         (void*)(3 * sizeof(float))
     );
 
-    glEnableVertexAttribArray(1); // Habilitamos o vertex array para índice 1.
+    glEnableVertexAttribArray(1); // Habilitamos o vertex array para índice 0.
     glBindVertexArray(0);         // Limpamos a Array de Vertices atual.
 }
 
@@ -73,7 +80,8 @@ void Mesh::Unbind() const {
 void Mesh::Draw() const {
     Bind();
 
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    // Aquela bruxaria toda para colocar o indexCount aqui...
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
 
     Unbind();
 }

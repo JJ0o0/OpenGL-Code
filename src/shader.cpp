@@ -50,6 +50,13 @@ void Shader::UseProgram() {
     glUseProgram(shaderProgram);
 }
 
+// Coloca um valor inteiro à uma variável uniform do shader.
+void Shader::SetIntUniform(const char* name, const int& value) {
+    GLint location = glGetUniformLocation(shaderProgram, name);
+    glUniform1i(location, value);
+}
+
+// Coloca um valor vec4 à uma variável uniform do shader.
 void Shader::SetVec4Uniform(const char* name, const glm::vec4& value) {
     GLint location = glGetUniformLocation(shaderProgram, name);
     glUniform4fv(location, 1, glm::value_ptr(value));

@@ -7,6 +7,7 @@
 class Mesh {
 private:
     GLuint VAO, VBO, EBO;
+    GLsizei indexCount;
 public:
     Mesh(const float* vertices, size_t verticeSize, const unsigned int* indices, size_t indiceSize);
     ~Mesh();

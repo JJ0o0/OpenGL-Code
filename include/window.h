@@ -2,6 +2,7 @@
 
 #include "shader.h"
 #include "mesh.h"
+#include "texture.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -13,6 +14,8 @@ private:
     const char* window_title;
 
     Mesh* mesh;
+    Texture* texture;
+    Texture* texture2;
     Shader* shader;
 
     unsigned int VBO, VAO;
